@@ -1,9 +1,6 @@
-from __future__ import absolute_import
-
 import torch
-import torch.nn as nn
+import cv2
 import numpy as np
-import scipy.misc
 
 from .misc import *
 
@@ -21,15 +18,12 @@ def im_to_torch(img):
 
 def load_image(img_path):
     # H x W x C => C x H x W
-    return im_to_torch(scipy.misc.imread(img_path, mode='RGB'))
+    return im_to_torch(cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB))
 
 def resize(img, owidth, oheight):
     img = im_to_numpy(img)
     print('%f %f' % (img.min(), img.max()))
-    img = scipy.misc.imresize(
-            img,
-            (oheight, owidth)
-        )
+    img = cv2.resize(img, (owidth, oheight), interpolation=cv2.INTER_LINEAR)
     img = im_to_torch(img)
     print('%f %f' % (img.min(), img.max()))
     return img
@@ -148,12 +142,12 @@ def sample_with_heatmap(inp, out, num_rows=2, parts_to_show=None):
     full_img = np.zeros((img.shape[0], size * (num_cols + num_rows), 3), np.uint8)
     full_img[:img.shape[0], :img.shape[1]] = img
 
-    inp_small = scipy.misc.imresize(img, [size, size])
+    inp_small = cv2.resize(img, (size, size), interpolation=cv2.INTER_LINEAR)
 
     # Set up heatmap display for each part
     for i, part in enumerate(parts_to_show):
         part_idx = part
-        out_resized = scipy.misc.imresize(out[part_idx], [size, size])
+        out_resized = cv2.resize(out[part_idx], (size, size), interpolation=cv2.INTER_LINEAR)
         out_resized = out_resized.astype(float)/255
         out_img = inp_small.copy() * .3
         color_hm = color_heatmap(out_resized)

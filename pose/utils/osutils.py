@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 import os
 import errno
 
@@ -11,7 +9,7 @@ def mkdir_p(dir_path):
             raise
 
 def isfile(fname):
-    return os.path.isfile(fname) 
+    return os.path.isfile(fname)
 
 def isdir(dirname):
     return os.path.isdir(dirname)

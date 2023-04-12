@@ -1,9 +1,4 @@
-from __future__ import print_function, absolute_import
-
-import os
 import argparse
-import time
-import matplotlib.pyplot as plt
 
 import torch
 import torch.nn.parallel
@@ -11,13 +6,7 @@ import torch.backends.cudnn as cudnn
 import torch.optim
 import torchvision.datasets as datasets
 
-from pose import Bar
-from pose.utils.logger import Logger, savefig
-from pose.utils.evaluation import accuracy, AverageMeter, final_preds
-from pose.utils.misc import save_checkpoint, save_pred, adjust_learning_rate
 from pose.utils.osutils import mkdir_p, isfile, isdir, join
-from pose.utils.imutils import batch_with_heatmap
-from pose.utils.transforms import fliplr, flip_back
 import pose.models as models
 import pose.datasets as datasets
 

@@ -1,12 +1,7 @@
-from __future__ import absolute_import
-
 import os
 import shutil
 import torch
-import math
-import numpy as np
 import scipy.io
-import matplotlib.pyplot as plt
 
 def to_numpy(tensor):
     if torch.is_tensor(tensor):

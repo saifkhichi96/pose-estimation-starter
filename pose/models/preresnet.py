@@ -3,8 +3,6 @@ Ported form https://github.com/facebook/fb.resnet.torch/blob/master/models/prere
 (c) YANG, Wei 
 '''
 import torch.nn as nn
-import math
-import torch.utils.model_zoo as model_zoo
 
 
 __all__ = ['PreResNet', 'preresnet20', 'preresnet32', 'preresnet44', 'preresnet56',

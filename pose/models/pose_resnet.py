@@ -1,13 +1,7 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 from easydict import EasyDict as edict
 
-import torch
 import torch.nn as nn
-from torchvision.models.resnet import model_zoo
-from torchvision.models.resnet import model_urls
+from torchvision.models import get_model
 from torchvision.models.resnet import BasicBlock, Bottleneck
 
 # Specification
@@ -156,7 +150,7 @@ def get_default_network_config():
     return config
 
 def init_pose_net(pose_net, name):
-    org_resnet = model_zoo.load_url(model_urls[name])
+    org_resnet = get_model(name)
     # drop orginal resnet fc layer, add 'None' in case of no fc layer, that will raise error
     org_resnet.pop('fc.weight', None)
     org_resnet.pop('fc.bias', None)

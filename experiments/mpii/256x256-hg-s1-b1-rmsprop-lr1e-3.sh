@@ -1,7 +1,7 @@
 GPU=0
 ARCH=hg
 DSET=mpii
-IMAGEPATH=~/dataset/mpii/images  # set image path here
+IMAGEPATH=data/mpii/images  # set image path here
 ANNOPATH=data/mpii/mpii_annotations.json
 STACK=1
 BLOCK=1
