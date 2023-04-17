@@ -1,19 +1,12 @@
-# Getting Started
+---
+title: Evaluation
+layout: default
+parent: Getting Started
+nav_order: 3
+---
 
-## Training
+# Evaluation
 
-Run the following command in terminal to train an 8-stack of hourglass network on the MPII human pose dataset.
-```
-CUDA_VISIBLE_DEVICES=0 python example/main.py --dataset mpii -a hg --stacks 8 --blocks 1 --checkpoint checkpoint/mpii/hg8 -j 4
-```
-Here,
-* `CUDA_VISIBLE_DEVICES=0` identifies the GPU devices you want to use. For example, use `CUDA_VISIBLE_DEVICES=0,1` if you want to use two GPUs with ID `0` and `1`.
-* `-j` specifies how many workers you want to use for data loading.
-* `--checkpoint` specifies where you want to save the models, the log and the predictions to.
-
-**Please refer to [TRAINING.md](TRAINING.md) for detailed training recipes!**
-
-## Testing
 You may download our pretrained models (e.g., [2-stack hourglass model](https://drive.google.com/drive/folders/0B63t5HSgY4SQQ2FBRE5rQ2EzbjQ?resourcekey=0-EyrDJs1JYnC5byj5GydbPQ&usp=sharing)) for a quick start.
 
 Run the following command in terminal to evaluate the model on MPII validation split (The train/val split is from [Tompson et al. CVPR 2015](http://www.cims.nyu.edu/~tompson/data/mpii_valid_pred.zip)).
@@ -27,9 +20,9 @@ CUDA_VISIBLE_DEVICES=0 python example/main.py --dataset mpii -a hg --stacks 2 --
 
 The result will be saved as a `.mat` file (`preds_valid.mat`), which is a `2958x16x2` matrix, in the folder specified by `--checkpoint`.
 
-### Evaluate the PCKh@0.5 score
+## Evaluate the PCKh@0.5 score
 
-#### Evaluate with MATLAB
+### Evaluate with MATLAB
 
 You may use the matlab script `evaluation/eval_PCKh.m` to evaluate your predictions. The evaluation code is ported from  [Tompson et al. CVPR 2015](http://www.cims.nyu.edu/~tompson/data/mpii_valid_pred.zip).
 
@@ -45,8 +38,8 @@ The results (PCKh@0.5 score) trained using this code is reported in the followin
 
 Training / validation curve is visualized as follows.
 
-![curve](data/acc_curve.png)
+![curve](../assets/images/acc_curve.png)
 
-#### Evaluate with Python
+### Evaluate with Python
 
 You may also evaluate the result by running `python evaluation/eval_PCKh.py` to evaluate the predictions. It will produce exactly the same result as that of the MATLAB. Thanks [@sssruhan1](https://github.com/sssruhan1) for the [contribution](https://github.com/bearpaw/pytorch-pose/pull/2).

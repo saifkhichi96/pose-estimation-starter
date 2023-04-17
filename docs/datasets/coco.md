@@ -1,3 +1,10 @@
+---
+title: COCO Dataset
+layout: default
+parent: Datasets
+nav_order: 1
+---
+
 ## Directory structure
 To train on coco (single person pose estimation), place the following files in the right place.
 
